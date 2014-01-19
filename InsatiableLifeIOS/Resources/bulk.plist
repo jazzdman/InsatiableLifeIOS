@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>rice</key>
+	<real>0.376</real>
+	<key>bread crumb</key>
+	<real>0.334</real>
+	<key>risotto</key>
+	<real>0.328</real>
+	<key>sugar</key>
+	<real>0.365</real>
+	<key>flour</key>
+	<real>0.402</real>
+	<key>salt</key>
+	<real>0.668</real>
+	<key>baking powder</key>
+	<real>0.47</real>
+	<key>baking soda</key>
+	<real>0.418</real>
+	<key>cornmeal</key>
+	<real>0.334</real>
+	<key>corn meal</key>
+	<real>0.334</real>
+	<key>cornstarch</key>
+	<real>0.35</real>
+	<key>corn starch</key>
+	<real>0.35</real>
+	<key>nut</key>
+	<real>1</real>
+	<key>cashew</key>
+	<integer>1</integer>
+	<key>almond</key>
+	<real>1</real>
+	<key>raisin</key>
+	<real>1</real>
+	<key>peppercorn</key>
+	<integer>1</integer>
+	<key>crouton</key>
+	<string>.334</string>
+</dict>
+</plist>
