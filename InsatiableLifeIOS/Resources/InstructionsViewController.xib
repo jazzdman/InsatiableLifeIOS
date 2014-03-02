@@ -18,7 +18,7 @@
             <accessibility key="accessibilityConfiguration">
                 <accessibilityTraits key="traits" none="YES" staticText="YES"/>
             </accessibility>
-            <mutableString key="text">This application is intended to help a busy person do the following:
+            <string key="text">This application is intended to help a busy person do the following:
  
 1)  Create a menu for the week at random
 
@@ -56,7 +56,7 @@ This view displays those ingredients that the user can store at room temperature
  
 The Groceries View
  
-The contents of this view are derived from both the Menu View and the Pantry View.  The ingredients that make up each of the recipes selected in the Menu View are compiled into a list for display here.  Any ingredients that are already in the pantry are subtracted from the quantity in the pantry and not displayed.  Ingredients that would go beyond what’s in the pantry are included.  As each item is selected, the text for it will turn green and it will be moved to the bottom of the list.  The list is set up with a bit of intelligence.  If an ingredient comes in a container that can be stored at room temperature, this ingredient will be highlighted in yellow in the list.  When the user selects this item on the list, she is asked for the quantity (fluid ounces or weight ounces) of the container.  It may not be possible for Full Plate to determine a whole quantity for an ingredient (e.g. ½ chopped green pepper).  These items will be listed in red.</mutableString>
+The contents of this view are derived from both the Menu View and the Pantry View.  The ingredients that make up each of the recipes selected in the Menu View are compiled into a list for display here.  Any ingredients that are already in the pantry are subtracted from the quantity in the pantry and not displayed.  Ingredients that would go beyond what’s in the pantry are included.  As each item is selected, the text for it will turn green and it will be moved to the bottom of the list.  The list is set up with a bit of intelligence.  If an ingredient comes in a container that can be stored at room temperature, this ingredient will be highlighted in yellow in the list.  When the user selects this item on the list, she is asked for the quantity (fluid ounces or weight ounces) of the container.  It may not be possible for InsatiableLifeIOS to determine a whole quantity for an ingredient (e.g. ½ chopped green pepper).  These items will be listed in red.</string>
             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
         </textView>

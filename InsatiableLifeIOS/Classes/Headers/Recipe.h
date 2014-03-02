@@ -19,24 +19,24 @@
 {
     // The HTML for the recipe, scaled to the servings specified by the
     // user
-    NSString * recipePage;
+    NSString * _recipePage;
     
     // The title of the recipe
-    NSString * recipeTitle;
+    NSString * _recipeTitle;
     
     // The day of the week that this recipe should be displayed in
     // as a string
-    NSString * recipeDateString;
+    NSString * _recipeDateString;
     
     // The day of the week that this recipe should be displayed in 
     // as an int
-    int recipeDateInt;
+    int _recipeDateInt;
     
     // The URL that corresponds to this recipe
-    NSURL * recipeURL;
+    NSURL * _recipeURL;
     
     // The ingredients for this recipe
-    NSMutableArray * recipeIngredients;
+    NSMutableArray * _recipeIngredients;
 }
 
 // The Objective-C properties that correspond to the instance variables

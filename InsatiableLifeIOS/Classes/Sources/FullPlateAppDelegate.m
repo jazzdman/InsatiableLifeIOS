@@ -12,6 +12,8 @@
 #import "PantryViewController.h"
 #import "SettingsViewController.h"
 
+#import <dlfcn.h>
+
 
 @implementation FullPlateAppDelegate
 
@@ -79,8 +81,11 @@
 	} 
     
     // Add the tab bar controller's current view as a subview of the window
+    self.window.rootViewController = tabBarController;
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
+    
+    [self loadReveal];
     
     return YES;
 }
@@ -364,11 +369,11 @@
                 rowView.frame = CGRectMake(0.0f, 0.0f, 310.0f, rowImage.size.height+10.0f);
                 break;
             default:
-                [self showAlertWithTitle: @"Error" 
-                      andMessage: @"An unexpected error has occurred.  Please exit and restart FullPlate (FullPlateAppDelegate)"];
+                [self showAlertWithTitleandMessage:[NSArray arrayWithObjects:@"Error",
+                                                    @"An unexpected error has occurred.  Please exit and restart FullPlate (FullPlateAppDelegate)",nil]];
                 break;
         }
-        rowLabel.frame = CGRectMake(rowImage.size.width + 10.0f, 0.0f, 160.0f, rowImage.size.height);  
+        rowLabel.frame = CGRectMake(rowImage.size.width + 10.0f, 0.0f, 160.0f, rowImage.size.height);
         rowLabel.text = [displayItems objectAtIndex:row];
         rowLabel.backgroundColor = [UIColor clearColor];
         [rowView addSubview:rowLabel];
@@ -406,6 +411,30 @@
 {
     return 320.0f;
 }
+
+
+#pragma mark - Reveal
+
+
+- (void)loadReveal
+{
+    NSString *revealLibName = @"libReveal";
+    NSString *revealLibExtension = @"dylib";
+    NSString *dyLibPath = [[NSBundle mainBundle] pathForResource:revealLibName ofType:revealLibExtension];
+    NSLog(@"Loading dynamic library: %@", dyLibPath);
+    
+    void *revealLib = NULL;
+    revealLib = dlopen([dyLibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
+    
+    if (revealLib == NULL)
+    {
+        char *error = dlerror();
+        NSLog(@"dlopen error: %s", error);
+        NSString *message = [NSString stringWithFormat:@"%@.%@ failed to load with error: %s", revealLibName, revealLibExtension, error];
+        [[[UIAlertView alloc] initWithTitle:@"Reveal library could not be loaded" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
+}
+
 
 /**********************************************
  *

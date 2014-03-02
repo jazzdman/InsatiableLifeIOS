@@ -12,6 +12,7 @@
 
 #define SECONDS_IN_SIX_DAYS 518400.0f
 
+#define SETTINGS_END -1
 #define SETTINGS_PREPTIME 0
 #define SETTINGS_SERVINGS 1
 #define SETTINGS_CALORIES 2
@@ -74,7 +75,7 @@
 @property (retain) NSString * caloriesPerServing;
 @property (retain) NSString * maxPrepTime;
 @property (retain) NSString * minServings;
-@property (retain) NSString * maxCaloriesPerServing;
+@property (retain) NSString * minCaloriesPerServing;
 
 
 // The singleton factory method

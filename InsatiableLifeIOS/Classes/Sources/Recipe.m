@@ -12,12 +12,12 @@
 @implementation Recipe
 
 // Create the setters and getters for the properties
-@synthesize recipePage;
-@synthesize recipeTitle;
-@synthesize recipeDateString;
-@synthesize recipeDateInt;
-@synthesize recipeURL;
-@synthesize recipeIngredients;
+@synthesize recipePage = _recipePage;
+@synthesize recipeTitle = _recipeTitle;
+@synthesize recipeDateString = _recipeDateString;
+@synthesize recipeDateInt = _recipeDateInt;
+@synthesize recipeURL = _recipeURL;
+@synthesize recipeIngredients = _recipeIngredients;
 
 /*************************************************************
  *
@@ -38,17 +38,19 @@
     if (self) 
     {
         tempItem = [[NSString alloc] initWithString:@""];
-        self.recipePage = tempItem;
-        self.recipeTitle = tempItem;
-        self.recipeDateString = tempItem;
-        [tempItem release];
-        self.recipeDateInt = -1;
+        _recipePage = tempItem;
+        [_recipePage retain];
+        _recipeTitle = tempItem;
+        [_recipeTitle retain];
+        _recipeDateString = tempItem;
+        [_recipeDateString retain];
+        _recipeDateInt = -1;
         tempItem = [[NSURL alloc] init];
-        self.recipeURL= tempItem;
-        [tempItem release];
+        _recipeURL= tempItem;
+        [_recipeURL retain];
         tempItem = [[NSMutableArray alloc] initWithCapacity:1];
-        self.recipeIngredients = tempItem;
-        [tempItem release];
+        _recipeIngredients = tempItem;
+        [_recipeIngredients retain];
     }
     
     return self;
@@ -91,18 +93,18 @@
 - (void)dealloc
 {
     
-    [recipePage release];
+    [_recipePage release];
     
-    [recipeTitle release];
+    [_recipeTitle release];
    
-    if([recipeDateString retainCount] != UINT_MAX)
+    if([_recipeDateString retainCount] != UINT_MAX)
     {
-        [recipeDateString release];
+        [_recipeDateString release];
     }
    
-    [recipeURL release];
+    [_recipeURL release];
    
-    [recipeIngredients release];
+    [_recipeIngredients release];
     
     [super dealloc];
     

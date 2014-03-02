@@ -33,6 +33,12 @@ typedef enum {
 // rearranging them or moving on to the groceries view
 #define MENU_SET 2
 
+#define ADD_PROGRESS_BAR 0
+
+#define REMOVE_PROGRESS_BAR 1
+
+#define UNDEFINED_PROGRESS_BAR -1
+
 @class AllRecipesManager;
 @class FullPlateAppDelegate;
 
@@ -88,6 +94,8 @@ typedef enum {
     // to get to viewDidAppear?
     BOOL controllerUp;
     
+    int progressBarState;
+    
 }
 
 // The method we call when application becomes active since
@@ -130,6 +138,8 @@ typedef enum {
 // Allows us to set the label for the UITableViewCell
 // when we want to.
 -(void) setLabel:(UITableViewCell *)cell fromRecipe:(Recipe *)recipe;
+
+-(void) setProgressBar;
 
 // The destructor for this class
 -(void) dealloc;

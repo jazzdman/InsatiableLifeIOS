@@ -58,6 +58,7 @@
                                   40.0f,
                                   25.0f);
     
+    
     // Create the calories UITextField
     caloriesField = [[UITextField alloc] initWithFrame:textFrame];
     caloriesField.keyboardType = UIKeyboardTypeDefault;
@@ -220,8 +221,9 @@
  ***************************************************/
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
+    int size = [[[SettingsManager instance] getSettingsKeys] count];
     // Return the number of rows in the section.
-    return [[[SettingsManager instance] getSettingsKeys] count] +1;
+    return  size + 1;
 }
 
 
@@ -409,7 +411,8 @@
  ***************************************************/
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return ceilf(self.tableView.frame.size.height/7.0f);
+    int size = [[[SettingsManager instance] getSettingsKeys] count];
+    return ceilf(self.tableView.frame.size.height/(float)(size+1));
 }
 
 #pragma mark -
@@ -485,6 +488,9 @@
     UITabBarItem * tempItem;
     float test1, test2;
     NSRange tempRange;
+    float minCalories = [[SettingsManager instance].minCaloriesPerServing floatValue];
+    float maxPrepTime = [[SettingsManager instance].maxPrepTime floatValue];
+    float minServings = [[SettingsManager instance].minServings floatValue];
    
     
     // Get the values from the caloriesField, make sure it's a positive
@@ -495,12 +501,11 @@
         tempRange = [caloriesField.text rangeOfString:@"-"];
         if (test1 != test2 ||
             tempRange.location != NSNotFound ||
-            test2 <= 0.0f ||
-            test2 > [[SettingsManager instance].maxCaloriesPerServing floatValue])
+            test2 < minCalories)
         {
             [(FullPlateAppDelegate *)[[UIApplication sharedApplication] delegate] showAlertWithTitleandMessage:
                                                                                     [NSArray arrayWithObjects: @"Error",
-                                [NSString stringWithFormat: @"Please enter a positive number between 0 and %@ into the Calories Per Serving field.", [SettingsManager instance].maxCaloriesPerServing], nil]];
+                                [NSString stringWithFormat: @"Please enter a positive number greater than %f into the Calories Per Serving field.", minCalories], nil]];
         } else {
             [SettingsManager instance].caloriesPerServing = caloriesField.text;
         }
@@ -515,7 +520,7 @@
         tempRange = [prepTimeField.text rangeOfString:@"-"];
         if (test1 != test2 ||
             tempRange.location != NSNotFound ||
-            test2 == 0.0f || test2 > [[SettingsManager instance].maxPrepTime floatValue])
+            test2 == 0.0f || test2 > maxPrepTime)
         {
             [(FullPlateAppDelegate *)[[UIApplication sharedApplication] delegate]
                                                      showAlertWithTitleandMessage:[NSArray arrayWithObjects:@"Error",
@@ -534,7 +539,7 @@
         tempRange = [servingsField.text rangeOfString:@"-"];
         if (test1 != test2 ||
             tempRange.location != NSNotFound ||
-            test2 == 0.0f || test2 < [[SettingsManager instance].minServings floatValue])
+            test2 == 0.0f || test2 < minServings)
         {
             [(FullPlateAppDelegate *)[[UIApplication sharedApplication] delegate]
                                                      showAlertWithTitleandMessage:[NSArray arrayWithObjects: @"Error",

@@ -32,33 +32,33 @@
     //   2         cups      rice
     //(number)  (quantity)  (name)
     // Quantity and/or number might be empty
-    float number;
-    NSString * quantity;
-    NSString * name;
+    float _number;
+    NSString * _quantity;
+    NSString * _name;
     
     // Is this ingredient stored in a container?
     // Ingredients with a quantity of teaspoon, tablespoon or cup
     // might be in a container
-    BOOL inContainer;
+    BOOL _inContainer;
     
     // If this item is in a container, is it perishable (e.g. milk)?
     // If so, it won't go in the pantry.
-    BOOL isPerishable;
+    BOOL _isPerishable;
     
     // If this item is in a container, is it a liquid (e.g oil)?
-    BOOL isLiquid;
+    BOOL _isLiquid;
     
     // If this item is in a container, is it a bulk item (e.g flour)?
-    BOOL isBulk;
+    BOOL _isBulk;
     
     // If this item is in a container, are they used individually (e.g. a bay leaf)?
-    BOOL isIndividual;
+    BOOL _isIndividual;
     
     // Does this item need preparation (e.g. chopped)?  Then, it can't be in a container.
-    BOOL needsPrep;
+    BOOL _needsPrep;
     
     // The color of an ingredient, which denotes whether it has been selected or not.
-    UIColor * color;
+    UIColor * _color;
 }
 
 // Properties to wrap the member variables so 

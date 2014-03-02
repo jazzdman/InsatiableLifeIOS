@@ -22,6 +22,7 @@
 #define SERVER_GENERAL_ERROR -4
 #define SERVER_COLLECT_ERROR -5
 #define INVALID_PARAMETERS_ERROR -3
+#define EMPTY -10
 
 /********************************************
  *
@@ -95,7 +96,7 @@
     
     FullPlateAppDelegate * fpAppDelegate;
 
-    NSMutableArray * recipes;
+    NSMutableArray * _recipes;
     
 }
 

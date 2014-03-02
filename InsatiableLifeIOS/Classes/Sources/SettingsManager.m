@@ -21,7 +21,7 @@ static SettingsManager * singleton = nil;
 @synthesize caloriesPerServing;
 @synthesize maxPrepTime;
 @synthesize minServings;
-@synthesize maxCaloriesPerServing;
+@synthesize minCaloriesPerServing;
 
 /******************************************************************
  *
@@ -95,7 +95,7 @@ static SettingsManager * singleton = nil;
         [elements retain];
         
         // Pointers to the request objects we will send to allrecipes.com
-        NSURL * fullPlateServer = [NSURL URLWithString: @"http://localhost:8084/FullPlateCloudComponent/settings"];
+        NSURL * fullPlateServer = [NSURL URLWithString: @"http://localhost:8084/InsatiableLifeCloudComponent/settings"];
         
         NSURLResponse * response;
         NSError * error;
@@ -112,7 +112,6 @@ static SettingsManager * singleton = nil;
         // Create an XML parser, which makes a request to the server for recipes
         NSXMLParser * xmlParser = [[[NSXMLParser alloc] initWithData:tempDat] autorelease];
         tmpString = [[NSString alloc] initWithData:tempDat encoding:NSUTF8StringEncoding];
-        NSLog(tmpString);
         [tmpString release];
         
         // Set this class as the XML parser delegate
@@ -442,9 +441,30 @@ didStartElement:(NSString *)elementName
     
     NSNumber * tempNumber = [elements objectForKey:elementName];
     
-    elementType = [tempNumber intValue]; ;
+    elementType = [tempNumber intValue];
 
 }
+
+/*************************************************************
+ *
+ * Inputs  : The name of the element that we are entering.
+ *
+ * Purpose : Make sure we don't save carriage returns
+ *
+ * Outputs : None
+ *
+ *************************************************************/
+-(void) parser:(NSXMLParser *) parser
+didEndElement:(NSString *)elementName
+  namespaceURI:(NSString *)namespaceURI
+ qualifiedName:(NSString *)qName
+{
+
+    elementType = SETTINGS_END;
+    
+}
+
+
 
 /*************************************************************
  *
@@ -472,6 +492,8 @@ parseErrorOccurred:(NSError *)parseError
 
     // The value returned by the "count" element may contain an error from the server.
     switch (elementType) {
+        case SETTINGS_END:
+            break;
         case SETTINGS_PREPTIME:
             self.maxPrepTime = string;
             break;
@@ -479,7 +501,7 @@ parseErrorOccurred:(NSError *)parseError
             self.minServings = string;
             break;
         case SETTINGS_CALORIES:
-            self.maxCaloriesPerServing = string;
+            self.minCaloriesPerServing = string;
             break;
         default:
             // We're only interested in the elements listed above.  This is some sort of error.

@@ -12,16 +12,16 @@
 @implementation Ingredient
 
 // Create the setters and getters for the properties
-@synthesize number;
-@synthesize quantity;
-@synthesize name;
-@synthesize inContainer;
-@synthesize isPerishable;
-@synthesize isLiquid;
-@synthesize isBulk;
-@synthesize isIndividual;
-@synthesize needsPrep;
-@synthesize color;
+@synthesize number = _number;
+@synthesize quantity = _quantity;
+@synthesize name = _name;
+@synthesize inContainer = _inContainer;
+@synthesize isPerishable = _isPerishable;
+@synthesize isLiquid = _isLiquid;
+@synthesize isBulk = _isBulk;
+@synthesize isIndividual = _isIndividual;
+@synthesize needsPrep = _needsPrep;
+@synthesize color = _color;
 
 /***************************************************
  *
@@ -42,16 +42,18 @@
         self.number = 0.0f;
         
         tempItem = [[NSString alloc] initWithString:@""];
-        self.quantity = tempItem;
-        self.name = tempItem;
-        [tempItem release];
-        self.inContainer = NO;
-        self.isPerishable = NO;
-        self.isLiquid = NO;
-        self.isBulk = NO;
-        self.isIndividual = NO;
-        self.needsPrep = NO;
-        self.color = [UIColor blackColor];
+        _quantity = tempItem;
+        [_quantity retain];
+        _name = tempItem;
+        [_name retain];
+        _inContainer = NO;
+        _isPerishable = NO;
+        _isLiquid = NO;
+        _isBulk = NO;
+        _isIndividual = NO;
+        _needsPrep = NO;
+        _color = [UIColor blackColor];
+        [_color retain];
     }
         
     return self;
@@ -95,11 +97,11 @@
  ***************************************************/
 -(void)dealloc
 {
-    [quantity release];
+    [_quantity release];
     
-    [name release];
+    [_name release];
     
-    [color release];
+    [_color release];
     
     [super dealloc];
 }
