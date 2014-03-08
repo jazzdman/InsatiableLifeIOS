@@ -45,7 +45,7 @@
         _recipeDateString = tempItem;
         [_recipeDateString retain];
         _recipeDateInt = -1;
-        tempItem = [[NSURL alloc] init];
+        tempItem = [NSURL URLWithString:@"http://localhost"];
         _recipeURL= tempItem;
         [_recipeURL retain];
         tempItem = [[NSMutableArray alloc] initWithCapacity:1];

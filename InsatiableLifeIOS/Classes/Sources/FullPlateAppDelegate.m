@@ -85,7 +85,7 @@
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
     
-    [self loadReveal];
+    //[self loadReveal];
     
     return YES;
 }

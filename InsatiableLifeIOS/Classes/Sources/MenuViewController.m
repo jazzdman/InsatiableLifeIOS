@@ -13,6 +13,7 @@
 
 @implementation MenuViewController
 
+@synthesize tableView;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -37,7 +38,9 @@
 {
     [super viewDidLoad];
 
-    [self controllerUp];    
+    [self controllerUp];
+    
+    self.tableView = (UITableView *)self.view;
 }
 
 /*******************************************************
@@ -72,7 +75,7 @@
     UILongPressGestureRecognizer * longPressGestureRecognizer = 
     [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     longPressGestureRecognizer.minimumPressDuration = 1.0;
-    [self.tableView addGestureRecognizer:longPressGestureRecognizer];
+    [self.view addGestureRecognizer:longPressGestureRecognizer];
     [longPressGestureRecognizer release];
 
     
@@ -159,7 +162,7 @@
     [super viewDidAppear:animated];
     [self viewDidAppearPartTwo];
     
-    NSLog(@"Tabbar controller view : %@ ",[self.tabBarController.view class]);
+
 }
 
 /*************************************************************
@@ -181,17 +184,11 @@
     UIWebView * tempView;
     
     //Set up the UIProgressView
-    frameForProgressBar = CGRectMake(0.0f,
-                                     self.tableView.frame.origin.y + self.tableView.frame.size.height - progressBar.frame.size.height,
+    progressBar.frame = CGRectMake(0.0f,
+                                     self.view.frame.origin.y + self.view.frame.size.height - progressBar.frame.size.height,
                                      self.view.frame.size.width,
                                      progressBar.frame.size.height);
     
-    progressBar.frame = frameForProgressBar;
-    
-    insetsForTableView = UIEdgeInsetsMake(0.0, 0.0, progressBar.frame.size.height, 0.0);
-    //insetsForTableView = UIEdgeInsetsMake(0.0, 0.0, 200.0f, 0.0);
- 
-            
     // Check to see if there is a network connection 
     // with which to do a menu search.
     if ([self currentReachabilityStatus] == NotReachable) {
@@ -239,7 +236,8 @@
         [AllRecipesProxy instance].recipesUpdated = NO;
         
         // Make room for the progress view
-        self.tableView.contentInset = insetsForTableView;
+        progressBarState = ADD_PROGRESS_BAR;
+        [self setProgressBar];
         
         // Make sure the table view is scrollable
         self.tableView.scrollEnabled = YES;
@@ -282,7 +280,8 @@
         // Load the request into the web view
         tempView = (UIWebView *)vc.view;
         tempView.scalesPageToFit = YES;
-        [tempView loadHTMLString:recipe.recipePage baseURL:recipe.recipeURL];
+        [tempView loadRequest:[NSURLRequest requestWithURL:recipe.recipeURL]];
+        //[tempView loadHTMLString:recipe.recipePage baseURL:recipe.recipeURL];
         
         // Make sure users can't move from this view  
         for (int i = 1; i< 4; i++) {
@@ -559,7 +558,7 @@
     
     // Take the height of the UIProgressBar into account when
     // calculating the height of a table row.
-    if ([progressBar isDescendantOfView: self.tableView.superview]) {
+    if (progressBar.hidden == NO) {
         
         height = ceilf(self.tableView.frame.size.height/7.0f);
         
@@ -773,6 +772,8 @@
         
     // Create a controller for the web view that will display the story.
     UIViewController * vc = [[[UIViewController alloc] initWithNibName:@"WebViewController" bundle:[NSBundle mainBundle]] autorelease];
+    
+    NSURLRequest * urlRequest = [NSURLRequest requestWithURL:recipe.recipeURL];
         
     pushedViewInt = indexPath.row;
     pushedViewBool = YES;
@@ -787,7 +788,8 @@
     // Load the request into the web view
     tempView = (UIWebView *)vc.view;
     tempView.scalesPageToFit = YES;
-    [tempView loadHTMLString:recipe.recipePage baseURL:recipe.recipeURL];
+    //[tempView loadHTMLString:recipe.recipePage baseURL:recipe.recipeURL];
+    [tempView loadRequest:urlRequest];
     progressBarState = REMOVE_PROGRESS_BAR;
     [progressBar removeFromSuperview];
 
@@ -1158,14 +1160,7 @@
 -(void) setProgressBar
 {
     UIView * superView = self.view.superview;
-    UITableView * tableView = (UITableView *)self.view;
-    CGRect tableFrame = tableView.frame;
-    CGRect progressBarFrame = progressBar.frame;
-    
-    NSLog(@"progress bar x: %f y: %f height:%f width: %f", progressBarFrame.origin.x,
-               progressBar.frame.origin.y,
-               progressBar.frame.size.height,
-               progressBar.frame.size.width);
+    CGRect tableFrame = self.tableView.frame;
     
     for (UIView *view in superView.subviews) {
         [view removeFromSuperview];
@@ -1176,21 +1171,18 @@
         case ADD_PROGRESS_BAR:
             progressBar.hidden = NO;
             // Set the frame of the UITableView to allow the UIProgressView to appear
-            //self.tableView.contentInset = insetsForTableView;
-            //self.tableView.contentOffset = CGPointMake(0.0f, -insetsForTableView.bottom);
-            tableFrame.size.height = tableFrame.size.height - 7.5f;
-            tableView.frame = tableFrame;
-            [self.view insertSubview:progressBar belowSubview:self.tableView];
-            //[superView addSubview:progressBar];
-            [superView addSubview:tableView];
+            tableFrame.size.height = tableFrame.size.height - progressBar.frame.size.height;
+            self.tableView.frame = tableFrame;
+            [superView addSubview:progressBar];
+            [superView addSubview:self.tableView];
             break;
         case REMOVE_PROGRESS_BAR:
             //self.tableView.contentInset = UIEdgeInsetsZero;
             progressBar.hidden = YES;
-            tableFrame.size.height = tableFrame.size.height + 7.5f;
-            tableView.frame = tableFrame;
+            tableFrame.size.height = tableFrame.size.height + progressBar.frame.size.height;
+            self.tableView.frame = tableFrame;
             [progressBar removeFromSuperview];
-            [superView addSubview:tableView];
+            [superView addSubview:self.tableView];
             break;
         default:
             break;

@@ -224,7 +224,6 @@ static AllRecipesProxy * singleton = nil;
     // for that thread.
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     progress = 0.0f;
-    firstTime = YES;
     
     // Pointers to the request objects we will send to allrecipes.com
     NSString * tempString = @"http://localhost:8084/InsatiableLifeCloudComponent/menu?";
@@ -252,12 +251,6 @@ static AllRecipesProxy * singleton = nil;
         if (serverError) {
             break;
         }
-        
-
-        // Update the tableView with the recipes we've found so far
-        [menuViewController.tableView performSelectorOnMainThread:@selector(reloadData)
-                                             withObject:nil
-                                          waitUntilDone:NO];
         
     }
     
@@ -320,7 +313,6 @@ static AllRecipesProxy * singleton = nil;
     // greater than total_recipes
     currentRecipe=0;
     count = 0;
-    progress = 0;
     
     // Did we find a recipe we've collected already?
     foundRepeat=NO;
@@ -1246,6 +1238,7 @@ static AllRecipesProxy * singleton = nil;
     NSData * decodedData, * decodedData1;
     NSLog(@"recipes size %d", [self.recipeList count]);
     Recipe * rcp = [self.recipeList lastObject];
+    NSURL * tempURL;
     
     switch (elementType)
     {
@@ -1255,9 +1248,11 @@ static AllRecipesProxy * singleton = nil;
             [tempString release];
             break;
         case RECIPE_URL:
-            tempString = [[NSString alloc] initWithData:CDATABlock encoding:NSUTF8StringEncoding];
-            rcp.recipeURL = [ NSURL URLWithString:tempString ];
-            [tempString release];
+            tempString = [[NSString alloc] initWithData:CDATABlock encoding:NSASCIIStringEncoding];
+            tempString = [tempString stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            tempURL = [[NSURL alloc] initWithString:[tempString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            rcp.recipeURL = tempURL;
+            [tempURL release];
             break;
         case RECIPE_INGREDIENT:
             tempString = [[NSString alloc] initWithData:CDATABlock encoding:NSUTF8StringEncoding];

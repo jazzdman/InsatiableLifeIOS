@@ -58,7 +58,9 @@ typedef enum {
  *
  *************************************************************/
 
-@interface MenuViewController : UITableViewController <UINavigationControllerDelegate>
+@interface MenuViewController : UIViewController <UITableViewDataSource,
+                                                  UITableViewDelegate,
+                                                  UINavigationControllerDelegate>
 {
     // The progress bar that is displayed while recipes
     // are being found.
@@ -66,12 +68,6 @@ typedef enum {
     
     // The thread used to do the search for recipes
     NSThread * populateThread;
-    
-    // Frame to define the shape of the UIProgressView
-    CGRect frameForProgressBar; 
-    
-     // Frame to define the shape of the UITableView in this view
-    UIEdgeInsets insetsForTableView;
     
     // The state of the menu (one of the #defines above)
     // Ultimately the determines when the user can rearrange
@@ -97,6 +93,9 @@ typedef enum {
     int progressBarState;
     
 }
+
+@property (retain) UITableView * tableView;
+
 
 // The method we call when application becomes active since
 // viewDidAppear does not get called when application returns
