@@ -14,14 +14,15 @@ static SettingsManager * singleton = nil;
 @implementation SettingsManager
 
 // Create setters and getters for the properties
-@synthesize shoppingDay;
-@synthesize showGuides;
-@synthesize prepTime;
-@synthesize servings;
-@synthesize caloriesPerServing;
-@synthesize maxPrepTime;
-@synthesize minServings;
-@synthesize minCaloriesPerServing;
+@synthesize shoppingDay = _shoppingDay;
+@synthesize showGuides = _showGuides;
+@synthesize prepTime = _prepTime;
+@synthesize servings = _servings;
+@synthesize caloriesPerServing = _caloriesPerServing;
+@synthesize maxPrepTime = _maxPrepTime;
+@synthesize minServings = _minServings;
+@synthesize minCaloriesPerServing = _minCaloriesPerServing;
+@synthesize clientID = _clientID;
 
 /******************************************************************
  *
@@ -81,25 +82,26 @@ static SettingsManager * singleton = nil;
         self.caloriesPerServing = [ defaults stringForKey:[settingsKeysArray objectAtIndex: 0 ]];
         self.prepTime = [ defaults stringForKey:[settingsKeysArray objectAtIndex: 1 ]];
 		self.servings = [ defaults stringForKey:[settingsKeysArray objectAtIndex: 2 ]];
-		self.shoppingDay = [ defaults integerForKey:[settingsKeysArray objectAtIndex: 3 ]];
+		self.shoppingDay = (int)[ defaults integerForKey:[settingsKeysArray objectAtIndex: 3 ]];
         self.showGuides = [ defaults boolForKey:[settingsKeysArray objectAtIndex: 4 ]];		
         calendar = [[NSCalendar currentCalendar] retain];
         startTime = [[NSDate date ] timeIntervalSince1970];
-        repeat = [defaults integerForKey:@"repeat"];
+        repeat = (int)[defaults integerForKey:@"repeat"];
         
         elements = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
                                                         [NSNumber numberWithInt:SETTINGS_CALORIES],
                                                         [NSNumber numberWithInt:SETTINGS_SERVINGS],
-                                                        [NSNumber numberWithInt:SETTINGS_PREPTIME], nil]
-                                               forKeys: [NSArray arrayWithObjects:@"calories", @"servings", @"preptime",nil]];
+                                                        [NSNumber numberWithInt:SETTINGS_PREPTIME],
+                                                        [NSNumber numberWithInt:CLIENT_ID], nil]
+                                               forKeys: [NSArray arrayWithObjects:@"calories", @"servings", @"preptime",@"clientID", nil]];
         [elements retain];
         
-        // Pointers to the request objects we will send to allrecipes.com
-        NSURL * fullPlateServer = [NSURL URLWithString: @"http://localhost:8084/InsatiableLifeCloudComponent/settings"];
+        // Get information about settings limits from the server
+        //NSURL * fullPlateServer = [NSURL URLWithString: @"http://localhost:8084/InsatiableLifeCloudComponent/settings"];
+        NSURL * fullPlateServer = [NSURL URLWithString: @"http://jazzdman.dyndns.org:8080/InsatiableLifeCloudComponent/settings"];
         
         NSURLResponse * response;
         NSError * error;
-        NSString * tmpString;
         
         NSMutableURLRequest * tempReq = [NSMutableURLRequest requestWithURL:fullPlateServer
                                                                 cachePolicy: NSURLRequestReloadIgnoringCacheData
@@ -111,14 +113,37 @@ static SettingsManager * singleton = nil;
         
         // Create an XML parser, which makes a request to the server for recipes
         NSXMLParser * xmlParser = [[[NSXMLParser alloc] initWithData:tempDat] autorelease];
-        tmpString = [[NSString alloc] initWithData:tempDat encoding:NSUTF8StringEncoding];
-        [tmpString release];
         
         // Set this class as the XML parser delegate
         [xmlParser setDelegate:self];
         
         // Start processing the XML document that is received.
         [xmlParser parse];
+        
+        // Get the client ID.  If we haven't saved it yet, then we need to get it from the server.
+        if ([defaults objectForKey:@"clientID"] == nil) {
+            fullPlateServer = [NSURL URLWithString: @"http://jazzdman.dyndns.org:8080/InsatiableLifeCloudComponent/clientID"];
+            tempReq = [NSMutableURLRequest requestWithURL:fullPlateServer
+                                              cachePolicy: NSURLRequestReloadIgnoringCacheData
+                                          timeoutInterval:60.0];
+            
+            tempDat = [NSURLConnection sendSynchronousRequest: tempReq
+                                                     returningResponse: &response
+                                                                 error:&error];
+            
+            // Create an XML parser, which makes a request to the server for recipes
+            xmlParser = [[[NSXMLParser alloc] initWithData:tempDat] autorelease];
+            
+            // Set this class as the XML parser delegate
+            [xmlParser setDelegate:self];
+            
+            // Start processing the XML document that is received.
+            [xmlParser parse];
+
+            
+        } else {
+            self.clientID = (NSString *)[defaults objectForKey:@"clientID"];
+        }
 
 
 	}
@@ -143,7 +168,7 @@ static SettingsManager * singleton = nil;
 - (id)retain {
     return self;
 }
-- (unsigned)retainCount {
+- (NSUInteger)retainCount {
     return UINT_MAX; //denotes an object that cannot be released
 }
 - (oneway void)release {
@@ -173,6 +198,7 @@ static SettingsManager * singleton = nil;
 	[ defaults setObject:self.servings forKey:[settingsKeysArray objectAtIndex: 2 ]];
 	[ defaults setInteger: self.shoppingDay forKey:[settingsKeysArray objectAtIndex: 3 ]];
     [ defaults setBool: self.showGuides forKey:[settingsKeysArray objectAtIndex: 4 ]];
+    [ defaults setObject:self.clientID forKey:@"clientID"];
     
 }
 
@@ -343,7 +369,7 @@ static SettingsManager * singleton = nil;
 -(BOOL) timeToShop
 {
     NSDateComponents * components = [calendar components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
-    int currentDay = [components weekday] - 1;
+    int currentDay = (int)[components weekday] - 1;
     BOOL result;
     float currentTime = [[NSDate date] timeIntervalSince1970];
     
@@ -353,14 +379,14 @@ static SettingsManager * singleton = nil;
         repeat = 0;
         startTime = currentTime;
     }
-    if (shoppingDay != currentDay)
+    if (self.shoppingDay != currentDay)
     {
         repeat = 0;
     } else {
         repeat++;
     }
     
-    result = (shoppingDay == currentDay) && (repeat == 1);
+    result = (self.shoppingDay == currentDay) && (repeat == 1);
     
     [defaults setInteger:repeat forKey:@"repeat"];
     
@@ -489,6 +515,9 @@ parseErrorOccurred:(NSError *)parseError
  *************************************************************/
 -(void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
+    NSMutableString * tmpID = [[NSMutableString alloc] initWithCapacity:1];
+    
+    NSLog(@"This is the node value: %@", string);
 
     // The value returned by the "count" element may contain an error from the server.
     switch (elementType) {
@@ -502,6 +531,14 @@ parseErrorOccurred:(NSError *)parseError
             break;
         case SETTINGS_CALORIES:
             self.minCaloriesPerServing = string;
+            break;
+        case CLIENT_ID:
+            [tmpID appendString:string];
+            for (int i=(int)[tmpID length] +1; i < CLIENT_ID_LENGTH; i++) {
+                [tmpID insertString:@"0" atIndex:0];
+            }
+            
+            self.clientID = tmpID;
             break;
         default:
             // We're only interested in the elements listed above.  This is some sort of error.
@@ -538,16 +575,16 @@ parseErrorOccurred:(NSError *)parseError
         [defaults release];
     }
 	
-    if (prepTime) {
-        [prepTime release];
+    if (_prepTime) {
+        [_prepTime release];
     }
 	
-    if (servings) {
-        [servings release];
+    if (_servings) {
+        [_servings release];
     }
 	
-    if (caloriesPerServing) {
-        [caloriesPerServing release];
+    if (_caloriesPerServing) {
+        [_caloriesPerServing release];
     }
     
     if (calendar) {

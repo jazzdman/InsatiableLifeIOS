@@ -16,7 +16,9 @@
 #define SETTINGS_PREPTIME 0
 #define SETTINGS_SERVINGS 1
 #define SETTINGS_CALORIES 2
+#define CLIENT_ID 3
 #define SETTINGS_SERVER_ERROR -5
+#define CLIENT_ID_LENGTH 20
 
 
 /**********************************************************
@@ -34,21 +36,21 @@
 	// User default storage object provided by Cocoa.
 	NSUserDefaults * defaults;
     // Which day the user goes shopping
-	int shoppingDay;
+	int _shoppingDay;
 	// How much time each recipe should take to prepare
-	NSString * prepTime;
+	NSString * _prepTime;
     //
-	NSString * maxPrepTime;
+	NSString * _maxPrepTime;
 	// The number of servings that each meal should provide.
-	NSString * servings;
+	NSString * _servings;
     //
-	NSString * minServings;
+	NSString * _minServings;
     // The number of calories per serving
-    NSString * caloriesPerServing;
+    NSString * _caloriesPerServing;
     //
-    NSString * maxCaloriesPerServing;
+    NSString * _maxCaloriesPerServing;
     // Whether to show the guiding messages
-    BOOL showGuides;
+    BOOL _showGuides;
     // The calender used to determine timeToShop
     NSCalendar * calendar;
     // The time the settingsManager was initiated
@@ -64,6 +66,9 @@
     NSDictionary * elements;
     
     FullPlateAppDelegate * fpAppDelegate;
+    
+    // The ID we use to authenticate ourselves to the server
+    NSString * _clientID;
 }
 
 // These properties allow us to more easily access
@@ -76,6 +81,7 @@
 @property (retain) NSString * maxPrepTime;
 @property (retain) NSString * minServings;
 @property (retain) NSString * minCaloriesPerServing;
+@property (retain) NSString * clientID;
 
 
 // The singleton factory method

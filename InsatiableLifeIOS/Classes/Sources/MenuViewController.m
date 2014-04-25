@@ -86,8 +86,7 @@
                                                                       action:@selector(enableTabBar)] autorelease];
     
     // Find the state of this view if it has been saved in the past
-    menuState = [[NSUserDefaults standardUserDefaults] integerForKey:@"menuState"];
-    NSLog(@"This is menuState, %d.", menuState);
+    menuState = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"menuState"];
     [AllRecipesProxy instance].recipesUpdated = [[NSUserDefaults standardUserDefaults] boolForKey:@"recipesUpdated"];
     
     
@@ -107,7 +106,7 @@
     // Set the title of this view
     if (menuState == SELECT_RECIPES) 
     {
-        self.title = [NSString stringWithFormat:@"Menu - %d", [[AllRecipesProxy instance].recipeList count]];
+        self.title = [NSString stringWithFormat:@"Menu - %d", (int)[[AllRecipesProxy instance].recipeList count]];
     } else {
         self.title = @"Menu";
     }
@@ -123,14 +122,14 @@
     
     // Get thenumber of day selections the user has made for the SELECT_RECIPES
     // state
-    date = [[NSUserDefaults standardUserDefaults ] integerForKey:@"date"];
+    date = (int)[[NSUserDefaults standardUserDefaults ] integerForKey:@"date"];
     
     // Has the user actually displayed a web page?
     pushedViewBool = [[NSUserDefaults standardUserDefaults ] boolForKey:@"pushedViewBool"];
     
     // If so, get the row the user selected
     if (pushedViewBool) {
-        pushedViewInt = [[NSUserDefaults standardUserDefaults ] integerForKey:@"pushedViewInt"];
+        pushedViewInt = (int)[[NSUserDefaults standardUserDefaults ] integerForKey:@"pushedViewInt"];
     }
     // pushedViewInt indicates that a row hasn't been selected
     else {
@@ -622,7 +621,8 @@
  - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath 
 {
     Recipe * firstRecipe, * secondRecipe, * tempRecipe;
-    int direction = fromIndexPath.row - toIndexPath.row, i, tempInt;
+    int direction = (int)(fromIndexPath.row - toIndexPath.row);
+    int i, tempInt;
     NSString * tempString;
 
     // Handle the case where the user in moving adjacent cells
@@ -666,7 +666,7 @@
         [tempRecipe release];
         
         // Move all the intermediate dates down one in the list
-        for (i=toIndexPath.row; i<fromIndexPath.row; i++) 
+        for (i=(int)toIndexPath.row; i<fromIndexPath.row; i++)
         {
             firstRecipe = [[AllRecipesProxy instance].recipeList objectAtIndex:i];
             secondRecipe = [[AllRecipesProxy instance].recipeList objectAtIndex:i+1];
@@ -700,7 +700,7 @@
         [tempRecipe release];
         
         // Move all the intermediate dates up one in the list
-        for (i=toIndexPath.row; i>fromIndexPath.row; i--) 
+        for (i=(int)toIndexPath.row; i>fromIndexPath.row; i--)
         {
             firstRecipe = [[AllRecipesProxy instance].recipeList objectAtIndex:i];
             secondRecipe = [[AllRecipesProxy instance].recipeList objectAtIndex:i-1];
@@ -773,9 +773,9 @@
     // Create a controller for the web view that will display the story.
     UIViewController * vc = [[[UIViewController alloc] initWithNibName:@"WebViewController" bundle:[NSBundle mainBundle]] autorelease];
     
-    NSURLRequest * urlRequest = [NSURLRequest requestWithURL:recipe.recipeURL];
+    //NSURLRequest * urlRequest = [NSURLRequest requestWithURL:recipe.recipeURL];
         
-    pushedViewInt = indexPath.row;
+    pushedViewInt = (int)indexPath.row;
     pushedViewBool = YES;
     controllerUp = NO;
         
@@ -788,8 +788,8 @@
     // Load the request into the web view
     tempView = (UIWebView *)vc.view;
     tempView.scalesPageToFit = YES;
-    //[tempView loadHTMLString:recipe.recipePage baseURL:recipe.recipeURL];
-    [tempView loadRequest:urlRequest];
+    [tempView loadHTMLString:recipe.recipePage baseURL:recipe.recipeURL];
+    //[tempView loadRequest:urlRequest];
     progressBarState = REMOVE_PROGRESS_BAR;
     [progressBar removeFromSuperview];
 
@@ -912,7 +912,7 @@
         populateThread = nil;
         
         // Go through all the cells in the list
-        for (i = [[AllRecipesProxy instance].recipeList count]-1; i >=0 ; i--) 
+        for (i = (int)[[AllRecipesProxy instance].recipeList count]-1; i >=0 ; i--)
         {
             recipe = [[AllRecipesProxy instance].recipeList objectAtIndex:i];
             // Delete the cells that were not selected
@@ -1112,7 +1112,7 @@
         
         // We are now in the SELECT_RECIPES menuState
         menuState = SELECT_RECIPES;
-        self.title = [NSString stringWithFormat:@"Menu - %d", [[AllRecipesProxy instance].recipeList count]];        
+        self.title = [NSString stringWithFormat:@"Menu - %d", (int)[[AllRecipesProxy instance].recipeList count]];
     }
     [populateThread release];
     populateThread = nil;
@@ -1154,6 +1154,8 @@
         // Enable the Restart button
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
+    
+    [self.tableView reloadData];
 }
 
 
@@ -1304,7 +1306,7 @@
     
     // Break the recipeTitle up at space boundaries into an array of strings
     NSArray * labelArray = [recipe.recipeTitle componentsSeparatedByString:@" "];
-    int labelArraySize = [labelArray count];
+    int labelArraySize = (int)[labelArray count];
     
     // Set the width of the context 
     contentViewWidth = cell.contentView.frame.size.width - accessorySize;
@@ -1400,7 +1402,7 @@
         // NSLog(@"recipeDateString:%@ recipeTitle: %@.", self.recipeDateString, self.recipeTitle);
         
         // Start from the whole recipeTitle string
-        for (i = [labelArray count]; i >= 0; i--) 
+        for (i = (int)[labelArray count]; i >= 0; i--)
         {
             //[labelString appendString:@" - "];
             for (j = 0; j < i; j++) 
@@ -1497,7 +1499,7 @@
     
     [labelString release];
     
-    NSLog(@"The cell's contentView has this many subviews %d.",[cell.contentView.subviews count]);
+    NSLog(@"The cell's contentView has this many subviews %d.",(int)[cell.contentView.subviews count]);
     //[cell.contentView.subviews count];
 }
 

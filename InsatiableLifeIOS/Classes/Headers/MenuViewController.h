@@ -12,6 +12,7 @@
 #import "SettingsManager.h"
 #import "AllRecipesProxy.h"
 #import "Recipe.h"
+#import "ControllerProtocol.h"
 
 
 // This enum is used to determine if a network connection is
@@ -60,7 +61,8 @@ typedef enum {
 
 @interface MenuViewController : UIViewController <UITableViewDataSource,
                                                   UITableViewDelegate,
-                                                  UINavigationControllerDelegate>
+                                                  UINavigationControllerDelegate,
+                                                  ControllerProtocol>
 {
     // The progress bar that is displayed while recipes
     // are being found.

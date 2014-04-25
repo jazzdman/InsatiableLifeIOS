@@ -76,15 +76,15 @@ static AllRecipesProxy * singleton = nil;
     
 	if (self) 
 	{
-        self.generateStep = [[NSUserDefaults standardUserDefaults] integerForKey:@"generateStep"];
+        self.generateStep = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"generateStep"];
         
         elements = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:
-                                                       [NSNumber numberWithInt:RECIPE_TITLE],
-                                                       [NSNumber numberWithInt:RECIPE_URL],
-                                                       [NSNumber numberWithInt:RECIPE_INGREDIENT],
-                                                       [NSNumber numberWithInt:RECIPE_PAGE],
-                                                       [NSNumber numberWithInt:RECIPE_COUNT], nil]
-                                 forKeys: [NSArray arrayWithObjects:@"title", @"url", @"ingredient", @"page", @"count",nil]];
+                                                        [NSNumber numberWithInt:RECIPE_TITLE],
+                                                        [NSNumber numberWithInt:RECIPE_URL],
+                                                        [NSNumber numberWithInt:RECIPE_INGREDIENT],
+                                                        [NSNumber numberWithInt:RECIPE_PAGE], nil]
+                                 forKeys: [NSArray arrayWithObjects:@"title", @"url", @"ingredient", @"page", nil]];
+        
         [elements retain];
         
               
@@ -191,7 +191,7 @@ static AllRecipesProxy * singleton = nil;
 - (id)retain {
     return self;
 }
-- (unsigned)retainCount {
+- (NSUInteger)retainCount {
     return UINT_MAX; //denotes an object that cannot be released
 }
 - (oneway void)release {
@@ -223,10 +223,10 @@ static AllRecipesProxy * singleton = nil;
       // This method is called in a thread.  This is the NSAutoReleasePool
     // for that thread.
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    progress = 0.0f;
     
     // Pointers to the request objects we will send to allrecipes.com
-    NSString * tempString = @"http://localhost:8084/InsatiableLifeCloudComponent/menu?";
+    NSString * tempString = @"http://jazzdman.dyndns.org:8080/InsatiableLifeCloudComponent/menu?";
+    //NSString * tempString = @"http://localhost:8084/InsatiableLifeCloudComponent/menu?";
     tempString = [tempString stringByAppendingString:@"maxCal="];
     tempString = [tempString stringByAppendingString:[SettingsManager instance].caloriesPerServing];
     tempString = [tempString stringByAppendingString:@"&maxPrepTime="];
@@ -242,6 +242,7 @@ static AllRecipesProxy * singleton = nil;
     for (int i = self.generateStep; i< 7; i++) 
     {
         
+        NSLog(@"Calling the server : %i", i);
         self.generateStep = i;
         
         // Make a request to the server for recipes and
@@ -254,12 +255,11 @@ static AllRecipesProxy * singleton = nil;
         
     }
     
-    
-    // At this point, we are done with the search for recipes.  This will
-    // hide the progress bar.
+    // We are now done with the search
     [menuViewController performSelectorOnMainThread:@selector(updateProgressBar:)
                                          withObject:@"done"
                                       waitUntilDone:NO];
+
     
     
     // This will actually fill the table with the recipes that we've found.
@@ -295,33 +295,19 @@ static AllRecipesProxy * singleton = nil;
 {
     NSURLResponse * response;
     NSError * error;
-    NSString * tmpString;
+
     
     NSMutableURLRequest * tempReq = [NSMutableURLRequest requestWithURL:server
-                                                            cachePolicy: NSURLRequestReloadIgnoringCacheData
+                                                            cachePolicy: NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                         timeoutInterval:60.0];
+
     
     NSData * tempDat = [NSURLConnection sendSynchronousRequest: tempReq
                                              returningResponse: &response
                                                          error:&error];
-
-    
-    // The total number of recipes the AllRecipesProxy finds for
-    // a particular request
-    totalRecipes=0.0f;
-    // The current recipe being retrieved.  This value is no
-    // greater than total_recipes
-    currentRecipe=0;
-    count = 0;
-    
-    // Did we find a recipe we've collected already?
-    foundRepeat=NO;
-    firstTime = YES;
     
     // Create an XML parser, which makes a request to the server for recipes
     NSXMLParser * xmlParser = [[[NSXMLParser alloc] initWithData:tempDat] autorelease];
-    tmpString = [[NSString alloc] initWithData:tempDat encoding:NSUTF8StringEncoding];
-    [tmpString release];
     
     // Set this class as the XML parser delegate
     [xmlParser setDelegate:self];
@@ -566,10 +552,8 @@ static AllRecipesProxy * singleton = nil;
         }
         
         if (prepFound) {
-            NSLog(@"Groceries count %d.",[[GroceriesManager instance ].groceries count]);
-            groceriesSize = [[GroceriesManager instance ].groceries count];
+            groceriesSize = (int)[[GroceriesManager instance ].groceries count];
             insertIndex = [self buildIngredient:[components objectAtIndex:0]];
-            NSLog(@"insertIndex %d.",insertIndex);
             if (insertIndex == -1) {
                 tempIngredient = [[GroceriesManager instance].groceries objectAtIndex:0];
             } else if (insertIndex < groceriesSize) {
@@ -1116,7 +1100,8 @@ static AllRecipesProxy * singleton = nil;
         qualifiedName:(NSString *)qName
 {
     Recipe * rcp, * tempRecipe;
-    float tmpCurrent, tmpTotal;
+    int i;
+    BOOL foundRepeat = false;
     
     if ([elementName isEqualToString:@"count"]) {
         elementType = EMPTY;
@@ -1126,7 +1111,6 @@ static AllRecipesProxy * singleton = nil;
         return;
     }
     
-    NSLog(@"recipes size %d", [self.recipeList count]);
     rcp = (Recipe *)[self.recipeList lastObject];
 
     
@@ -1136,74 +1120,21 @@ static AllRecipesProxy * singleton = nil;
     }
 
     // Search to see if the recipe is a repeat.
-    for (int i = 0; i < [self.recipeList count]-1; i++)
+    for (i = 0; i < [self.recipeList count]-1; i++)
     {
         tempRecipe = [self.recipeList objectAtIndex:i];
         
         if ([tempRecipe.recipeTitle isEqualToString:rcp.recipeTitle])
         {
-            //NSLog(@"Found Repeat recipe, %@", [tempDict1 objectForKey:@"title"]);
-            foundRepeat = YES;
             break;
+            foundRepeat = true;
         }
     }
     
-    // If we did find a repeat recipe, increment the current
-    // recipe counter and reset the foundRepeat indicator and
-    // continue with the search.
     if (foundRepeat) {
-        currentRecipe++;
-        foundRepeat = NO;
-    } else {
-     
-        // Make sure we don't add recipes while another part
-        // of the application is using the recipeList
-        while (self.threadWait) {
-            [NSThread sleepForTimeInterval:.1f];
-        }
-        
-        // Remove any recipe whose title is blank.
-        if ([rcp.recipeTitle isEqualToString:@""])
-        {
-            [self.recipeList removeLastObject];
-            
-        }
-        
-        ++currentRecipe;
-        tmpCurrent = (float)currentRecipe;
-        tmpTotal = (float)totalRecipes;
-        
-        progress = tmpCurrent/tmpTotal*.14286+self.generateStep*.14286;
-        // Update the progress bar to indicate how far along we are in the
-        // search.
-        [menuViewController performSelectorOnMainThread:@selector(updateProgressBar:)
-                                             withObject:[NSString stringWithFormat:@"%f",progress]
-                                          waitUntilDone:NO];
-        
-        // Show those tableCells that have been collected
-        // so far.  Do this only once for a value of floatPercentage
-        // such that count*.1 >= progress <= (count+1)*.1
-        if (progress > .1*count &&
-            progress < .1*(count+1) &&
-            firstTime)
-        {
-            if (!menuViewController.tableView.hidden)
-            {
-                [menuViewController.tableView performSelectorOnMainThread:@selector(reloadData)
-                                                               withObject:nil
-                                                            waitUntilDone:YES];
-            }
-            firstTime = NO;
-        }
-        
-        // Check for when progress rises above (count+1)*.1
-        // from the above check
-        if (progress > .1*(count+1)) {
-            firstTime = YES;
-            count++;
-        }
-
+        [self.recipeList removeObjectAtIndex:i];
     }
+
     
     elementType = -1;
 
@@ -1236,9 +1167,10 @@ static AllRecipesProxy * singleton = nil;
 
     NSString * encodedString, * decodedString, * tempString;
     NSData * decodedData, * decodedData1;
-    NSLog(@"recipes size %d", [self.recipeList count]);
     Recipe * rcp = [self.recipeList lastObject];
     NSURL * tempURL;
+    
+    NSLog(@"CDATABlock :%@", [[[NSString alloc] initWithData:CDATABlock encoding:NSUTF8StringEncoding] autorelease]);
     
     switch (elementType)
     {
@@ -1248,7 +1180,7 @@ static AllRecipesProxy * singleton = nil;
             [tempString release];
             break;
         case RECIPE_URL:
-            tempString = [[NSString alloc] initWithData:CDATABlock encoding:NSASCIIStringEncoding];
+            tempString = [[[NSString alloc] initWithData:CDATABlock encoding:NSASCIIStringEncoding] autorelease];
             tempString = [tempString stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
             tempURL = [[NSURL alloc] initWithString:[tempString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             rcp.recipeURL = tempURL;
@@ -1297,13 +1229,8 @@ static AllRecipesProxy * singleton = nil;
 -(void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     
-    if (elementType == RECIPE_COUNT)
-    {
-        totalRecipes = [string intValue];
-    }
-    
     // The value returned by the "count" element may contain an error from the server.
-    switch (totalRecipes) {
+    switch ([string intValue]) {
         case SERVER_GENERAL_ERROR:
             
             [fpAppDelegate performSelectorOnMainThread:@selector(showAlertWithTitleandMessage)
@@ -1331,12 +1258,21 @@ static AllRecipesProxy * singleton = nil;
                                          waitUntilDone:NO];
             serverError = YES;
             break;
-        //  We got a number of recipes 
+        //  No errors occurred
         default:
             serverError = NO;
             break;
     }
     
+}
+
+-(void) parserDidEndDocument:(NSXMLParser *)parser
+{
+    // Update the progress bar to indicate how far along we are in the
+    // search.
+    [menuViewController performSelectorOnMainThread:@selector(updateProgressBar:)
+                                         withObject:[NSString stringWithFormat:@"%f",self.generateStep*.14286]
+                                      waitUntilDone:NO];
 }
 
 

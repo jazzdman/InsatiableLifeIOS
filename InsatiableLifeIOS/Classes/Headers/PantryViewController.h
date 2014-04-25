@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Ingredient.h"
+#import "ControllerProtocol.h"
 
 @class FullPlateAppDelegate;
 @class PantryManager;
@@ -25,7 +26,7 @@
  * they can decide to rearrange the order of the recipes. 
  *
  *************************************************************/
-@interface PantryViewController : UITableViewController
+@interface PantryViewController : UITableViewController <ControllerProtocol>
 {
     BOOL didModifyView;
 }

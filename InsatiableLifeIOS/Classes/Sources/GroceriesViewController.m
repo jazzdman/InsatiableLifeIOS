@@ -390,7 +390,7 @@
             !tempIngredient.isPerishable) 
         {   
             // Hold onto the row number the user has selected
-            selectedRow = indexPath.row;
+            selectedRow = (int)indexPath.row;
         
             // Set up a UIActionSheet to isplay the UIPickerView that
             // allows the user to choose the volume of bottle they bought.
@@ -415,7 +415,7 @@
         else if (tempIngredient.isBulk) 
         {   
             // Hold onto the row number the user has selected
-            selectedRow = indexPath.row;
+            selectedRow = (int)indexPath.row;
         
             // Set up a UIActionSheet to isplay the UIPickerView that
             // allows the user to choose the weight of bulk item they bought
@@ -443,7 +443,7 @@
                 !tempIngredient.isPerishable) 
         {   
             // Hold onto the row number the user has selected
-            selectedRow = indexPath.row;
+            selectedRow = (int)indexPath.row;
         
             // Set up a UIActionSheet to isplay the UIPickerView that
             // allows the user to choose the weight of bulk item they bought

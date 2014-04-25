@@ -221,7 +221,7 @@
  ***************************************************/
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-    int size = [[[SettingsManager instance] getSettingsKeys] count];
+    int size = (int)[[[SettingsManager instance] getSettingsKeys] count];
     // Return the number of rows in the section.
     return  size + 1;
 }
@@ -316,7 +316,7 @@
             dateString = [[NSMutableString alloc] initWithCapacity:1];
             [dateString appendString: @"Shopping Day"];
             [dateString appendString:@"  -  "];
-            [dateString appendString:[[SettingsManager instance] getSettingAtIndex:indexPath.row -1]];
+            [dateString appendString:[[SettingsManager instance] getSettingAtIndex:(int)indexPath.row -1]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = dateString;
             cell.textLabel.font = [UIFont systemFontOfSize:fontSize];
@@ -388,7 +388,7 @@
         OptionsViewController  * optionsController = [[[ OptionsViewController alloc] 
                                                       initWithData: [[[SettingsManager instance] getSettingsDict] objectForKey:settingsKey]
                                                       title: settingsKey
-                                                      andIndex: [indexPath row]-1] autorelease];
+                                                      andIndex: (int)[indexPath row]-1] autorelease];
         
         [self.navigationController pushViewController:optionsController animated:YES];
 
@@ -411,7 +411,7 @@
  ***************************************************/
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int size = [[[SettingsManager instance] getSettingsKeys] count];
+    int size = (int)[[[SettingsManager instance] getSettingsKeys] count];
     return ceilf(self.tableView.frame.size.height/(float)(size+1));
 }
 

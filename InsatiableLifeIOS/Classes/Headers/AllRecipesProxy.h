@@ -73,29 +73,20 @@
     BOOL hasParens;
     // Do any of the recipes need prep?
     BOOL needsPrep;
-    
-    int totalRecipes;
-    
-    int currentRecipe;
-    
-    float progress;
-    
-    int count;
-    
-    BOOL foundRepeat;
-    
-    BOOL firstTime;
-    
+    // A reference to the MenuViewController so we can update the Menu table
     MenuViewController * menuViewController;
-    
+    // The names of the XML elements we will receive from the server
     NSDictionary * elements;
-    
+    // Use the dictionary to convert the name of an element to an integer
+    // This is used in a switch statement to know how to interpret the value
+    // of a node.
     int elementType;
-    
+    // Let's us know if the server returned an error
     BOOL serverError;
-    
+    // A pionter to our app delegate so we can
     FullPlateAppDelegate * fpAppDelegate;
-
+    // The member variable that backs the property.  It holds the recipes
+    // we've received from the server.
     NSMutableArray * _recipes;
     
 }

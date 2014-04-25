@@ -65,7 +65,7 @@
  *********************************************/
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
 {
-    selectedTabIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"selectedTabIndex"];
+    selectedTabIndex = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"selectedTabIndex"];
 	
 	// If the user has not selected any settings, direct
     // them first to the settings tab.  Otherwise, open the tab
@@ -136,7 +136,7 @@
     
     // Take note of which tab was selected when the application
     // entered the background.
-    selectedTabIndex = tabBarController.selectedIndex;
+    selectedTabIndex = (int)tabBarController.selectedIndex;
     
     // Take note of the fact that the application is entering the background
     didEnterBackground = YES;
@@ -315,7 +315,7 @@
  *******************************************************/
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.selectedPick = row;
+    self.selectedPick = (int)row;
 }
 
 /********************************************************
