@@ -17,7 +17,6 @@
 		A10519D113A6F50C005F70F6 /* pantry.db in Resources */ = {isa = PBXBuildFile; fileRef = A10519D013A6F50C005F70F6 /* pantry.db */; };
 		A11427D0143540D50040F715 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = A11427CF143540D50040F715 /* iTunesArtwork */; };
 		A117624B14DF7CA300F5642D /* AllRecipesProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A117624914DF7CA300F5642D /* AllRecipesProxy.m */; };
-		A117624C14DF7CA300F5642D /* BingProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A117624A14DF7CA300F5642D /* BingProxy.m */; };
 		A117624F14DF7DD100F5642D /* MenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A117624E14DF7DD100F5642D /* MenuManager.m */; };
 		A11A91C613DBBA8400BCB80A /* bulk.plist in Resources */ = {isa = PBXBuildFile; fileRef = A11A91C513DBBA8400BCB80A /* bulk.plist */; };
 		A1308550139492AD0073C959 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1308535139492AD0073C959 /* 20-gear2.png */; };
@@ -60,7 +59,6 @@
 		A1BB8E55139491770031CC4D /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB8E46139491770031CC4D /* Recipe.m */; };
 		A1BB8E56139491770031CC4D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB8E47139491770031CC4D /* MenuViewController.m */; };
 		A1BB8E58139491770031CC4D /* PantryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB8E49139491770031CC4D /* PantryViewController.m */; };
-		A1BB8E59139491770031CC4D /* RecipeRequestConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB8E4A139491770031CC4D /* RecipeRequestConstructor.m */; };
 		A1BB8E5B139491770031CC4D /* SettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB8E4C139491770031CC4D /* SettingsManager.m */; };
 		A1BB8E5C139491770031CC4D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB8E4D139491770031CC4D /* SettingsViewController.m */; };
 		A1BC0CB618C2DAAA00991882 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1BC0CB518C2DAAA00991882 /* CFNetwork.framework */; };
@@ -90,9 +88,7 @@
 		A10519D013A6F50C005F70F6 /* pantry.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = pantry.db; path = Resources/pantry.db; sourceTree = "<group>"; };
 		A11427CF143540D50040F715 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		A117624714DF7C8B00F5642D /* AllRecipesProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = AllRecipesProxy.h; path = Headers/AllRecipesProxy.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		A117624814DF7C8B00F5642D /* BingProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BingProxy.h; path = Headers/BingProxy.h; sourceTree = "<group>"; };
 		A117624914DF7CA300F5642D /* AllRecipesProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AllRecipesProxy.m; path = Sources/AllRecipesProxy.m; sourceTree = "<group>"; };
-		A117624A14DF7CA300F5642D /* BingProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BingProxy.m; path = Sources/BingProxy.m; sourceTree = "<group>"; };
 		A117624E14DF7DD100F5642D /* MenuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuManager.m; path = Sources/MenuManager.m; sourceTree = "<group>"; };
 		A11A91C513DBBA8400BCB80A /* bulk.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bulk.plist; path = Resources/bulk.plist; sourceTree = "<group>"; };
 		A1308535139492AD0073C959 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "20-gear2.png"; path = "Resources/20-gear2.png"; sourceTree = "<group>"; };
@@ -116,6 +112,7 @@
 		A130854C139492AD0073C959 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Settings.plist; path = Resources/Settings.plist; sourceTree = "<group>"; };
 		A130854D139492AD0073C959 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsView.xib; path = Resources/SettingsView.xib; sourceTree = "<group>"; };
 		A130854F139492AD0073C959 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebViewController.xib; path = Resources/WebViewController.xib; sourceTree = "<group>"; };
+		A13AF6CF1909F6610035FF1D /* DisplayControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DisplayControl.h; path = Headers/DisplayControl.h; sourceTree = "<group>"; };
 		A162D99E18C3F43800A102A1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A167650313DC838400BEFC2F /* individuals.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = individuals.plist; path = Resources/individuals.plist; sourceTree = "<group>"; };
 		A16F190B142FD323002BDFCB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -140,7 +137,6 @@
 		A1BB8E37139491520031CC4D /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recipe.h; path = Headers/Recipe.h; sourceTree = "<group>"; };
 		A1BB8E38139491520031CC4D /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Headers/MenuViewController.h; sourceTree = "<group>"; };
 		A1BB8E3A139491520031CC4D /* PantryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PantryViewController.h; path = Headers/PantryViewController.h; sourceTree = "<group>"; };
-		A1BB8E3B139491520031CC4D /* RecipeRequestConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeRequestConstructor.h; path = Headers/RecipeRequestConstructor.h; sourceTree = "<group>"; };
 		A1BB8E3D139491520031CC4D /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsManager.h; path = Headers/SettingsManager.h; sourceTree = "<group>"; };
 		A1BB8E3E139491520031CC4D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = Headers/SettingsViewController.h; sourceTree = "<group>"; };
 		A1BB8E42139491770031CC4D /* FullPlateAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FullPlateAppDelegate.m; path = Sources/FullPlateAppDelegate.m; sourceTree = "<group>"; };
@@ -150,7 +146,6 @@
 		A1BB8E46139491770031CC4D /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recipe.m; path = Sources/Recipe.m; sourceTree = "<group>"; };
 		A1BB8E47139491770031CC4D /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Sources/MenuViewController.m; sourceTree = "<group>"; };
 		A1BB8E49139491770031CC4D /* PantryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PantryViewController.m; path = Sources/PantryViewController.m; sourceTree = "<group>"; };
-		A1BB8E4A139491770031CC4D /* RecipeRequestConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeRequestConstructor.m; path = Sources/RecipeRequestConstructor.m; sourceTree = "<group>"; };
 		A1BB8E4C139491770031CC4D /* SettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsManager.m; path = Sources/SettingsManager.m; sourceTree = "<group>"; };
 		A1BB8E4D139491770031CC4D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Sources/SettingsViewController.m; sourceTree = "<group>"; };
 		A1BC0CB518C2DAAA00991882 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CFNetwork.framework; sourceTree = "<group>"; };
@@ -289,7 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				A117624E14DF7DD100F5642D /* MenuManager.m */,
-				A117624A14DF7CA300F5642D /* BingProxy.m */,
 				A117624914DF7CA300F5642D /* AllRecipesProxy.m */,
 				A1A9ECD513A6F69700F1F610 /* FMDatabase.m */,
 				A1A9ECD613A6F69700F1F610 /* FMDatabaseAdditions.m */,
@@ -305,7 +299,6 @@
 				A1DF270013DFBC0400AE774D /* OptionsViewController.m */,
 				A1A9ECD913A6F69700F1F610 /* PantryManager.m */,
 				A1BB8E49139491770031CC4D /* PantryViewController.m */,
-				A1BB8E4A139491770031CC4D /* RecipeRequestConstructor.m */,
 				A1BB8E4C139491770031CC4D /* SettingsManager.m */,
 				A1BB8E4D139491770031CC4D /* SettingsViewController.m */,
 			);
@@ -315,7 +308,7 @@
 		A187DE0C123C6C9C002D6907 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				A117624814DF7C8B00F5642D /* BingProxy.h */,
+				A13AF6CF1909F6610035FF1D /* DisplayControl.h */,
 				A19FB9B514DF7E1C00B33225 /* MenuManager.h */,
 				A117624714DF7C8B00F5642D /* AllRecipesProxy.h */,
 				A1A9ECD013A6F68000F1F610 /* FMDatabase.h */,
@@ -331,7 +324,6 @@
 				A1DF26FE13DFBBCA00AE774D /* OptionsViewController.h */,
 				A1A9ECD413A6F68000F1F610 /* PantryManager.h */,
 				A1BB8E3A139491520031CC4D /* PantryViewController.h */,
-				A1BB8E3B139491520031CC4D /* RecipeRequestConstructor.h */,
 				A1BB8E3D139491520031CC4D /* SettingsManager.h */,
 				A1BB8E3E139491520031CC4D /* SettingsViewController.h */,
 			);
@@ -449,7 +441,6 @@
 				A1BB8E55139491770031CC4D /* Recipe.m in Sources */,
 				A1BB8E56139491770031CC4D /* MenuViewController.m in Sources */,
 				A1BB8E58139491770031CC4D /* PantryViewController.m in Sources */,
-				A1BB8E59139491770031CC4D /* RecipeRequestConstructor.m in Sources */,
 				A1BB8E5B139491770031CC4D /* SettingsManager.m in Sources */,
 				A1BB8E5C139491770031CC4D /* SettingsViewController.m in Sources */,
 				A1A9ECDA13A6F69700F1F610 /* FMDatabase.m in Sources */,
@@ -460,7 +451,6 @@
 				A1A4161718BEEDB200C2B94F /* GZIP.m in Sources */,
 				A1DF270213DFBC0400AE774D /* OptionsViewController.m in Sources */,
 				A117624B14DF7CA300F5642D /* AllRecipesProxy.m in Sources */,
-				A117624C14DF7CA300F5642D /* BingProxy.m in Sources */,
 				A117624F14DF7DD100F5642D /* MenuManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

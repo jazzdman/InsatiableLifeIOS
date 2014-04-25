@@ -11,6 +11,7 @@
 #import "GroceriesViewController.h"
 #import "PantryViewController.h"
 #import "SettingsViewController.h"
+#import "DisplayControl.h"
 
 #import <dlfcn.h>
 
@@ -101,9 +102,9 @@
  *
  *********************************************/
 - (void)applicationWillEnterForeground:(UIApplication *)application
-{   
-    
+{
     UINavigationController * nc;
+    UIViewController <DisplayControl> * dp;
     // If the application is coming back from the background
     // call the controllerUp methods to re-initialize the 
     // instance variables for the ViewControllers.  Have to do
@@ -112,7 +113,8 @@
     if(didEnterBackground)
     {
         for (nc in tabBarController.viewControllers) {
-            [nc.topViewController controllerUp];
+            dp = (UIViewController <DisplayControl> *)nc.topViewController;
+            [dp controllerUp];
         }
 
         tabBarController.selectedIndex = selectedTabIndex;
@@ -133,6 +135,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     UIApplication * app = [UIApplication sharedApplication];
+    __block UIViewController <DisplayControl> * dp;
     
     // Take note of which tab was selected when the application
     // entered the background.
@@ -156,7 +159,8 @@
             if ([nc.topViewController.view isMemberOfClass:[UIWebView class]]) {
                 [nc popViewControllerAnimated:NO];
             }
-            [nc.topViewController controllerDown];
+            dp = (UIViewController <DisplayControl> *)nc.topViewController;
+            [dp controllerDown];
         }
         
         [app endBackgroundTask:bgTask];
@@ -203,13 +207,16 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     
+    UIViewController<DisplayControl> * dp;
     UINavigationController * nc;
     // Perform viewDidAppear on the Menu View when the application 
     // becomes active.
     if(didEnterBackground)
     {
         nc = [tabBarController.viewControllers objectAtIndex:selectedTabIndex];
-        [nc.topViewController viewDidAppearPartTwo];
+        dp = (UIViewController <DisplayControl> *)nc.topViewController;
+        [dp viewDidAppearPartTwo];
+        
         didEnterBackground = NO;
     } 
     if(alertViewHidden)

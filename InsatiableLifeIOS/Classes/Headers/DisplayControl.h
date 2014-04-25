@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol ControllerProtocol <NSObject>
+@protocol DisplayControl <NSObject>
 
 -(void) controllerUp;
 -(void) controllerDown;

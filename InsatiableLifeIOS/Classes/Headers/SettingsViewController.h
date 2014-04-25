@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OptionsViewController.h"
-#import "ControllerProtocol.h"
+#import "DisplayControl.h"
 
 
 @class FullPlateAppDelegate;
@@ -23,7 +23,7 @@
  * user does his/her shopping.
  *
  *****************************************************************/
-@interface SettingsViewController : UITableViewController <UITextFieldDelegate, ControllerProtocol>
+@interface SettingsViewController : UITableViewController <UITextFieldDelegate, DisplayControl>
 {
 	// Allows the user to define the max prep time for a meal
     UITextField * prepTimeField;

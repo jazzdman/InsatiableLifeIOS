@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Recipe.h"
 #import "Ingredient.h"
-#import "ControllerProtocol.h"
+#import "DisplayControl.h"
 
 /************************************************************
  *
@@ -21,7 +21,7 @@
  *
  *************************************************************/
 
-@interface GroceriesViewController : UITableViewController <UIActionSheetDelegate, ControllerProtocol>
+@interface GroceriesViewController : UITableViewController <UIActionSheetDelegate, DisplayControl>
 {
     
     // This array describes volumes for fluid containers
