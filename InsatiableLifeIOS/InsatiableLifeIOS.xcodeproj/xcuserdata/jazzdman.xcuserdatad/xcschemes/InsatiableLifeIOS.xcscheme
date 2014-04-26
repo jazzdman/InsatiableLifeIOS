@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-               BuildableName = "Full Plate.app"
-               BlueprintName = "Full Plate"
-               ReferencedContainer = "container:Full Plate.xcodeproj">
+               BuildableName = "InsatiableLifeIOS.app"
+               BlueprintName = "InsatiableLifeIOS"
+               ReferencedContainer = "container:InsatiableLifeIOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Full Plate.app"
-            BlueprintName = "Full Plate"
-            ReferencedContainer = "container:Full Plate.xcodeproj">
+            BuildableName = "InsatiableLifeIOS.app"
+            BlueprintName = "InsatiableLifeIOS"
+            ReferencedContainer = "container:InsatiableLifeIOS.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Full Plate.app"
-            BlueprintName = "Full Plate"
-            ReferencedContainer = "container:Full Plate.xcodeproj">
+            BuildableName = "InsatiableLifeIOS.app"
+            BlueprintName = "InsatiableLifeIOS"
+            ReferencedContainer = "container:InsatiableLifeIOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -86,9 +86,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Full Plate.app"
-            BlueprintName = "Full Plate"
-            ReferencedContainer = "container:Full Plate.xcodeproj">
+            BuildableName = "InsatiableLifeIOS.app"
+            BlueprintName = "InsatiableLifeIOS"
+            ReferencedContainer = "container:InsatiableLifeIOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
