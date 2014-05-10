@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		A10519C913A6F4C2005F70F6 /* perishables.txt in Resources */ = {isa = PBXBuildFile; fileRef = A10519C813A6F4C2005F70F6 /* perishables.txt */; };
 		A10519CB13A6F4D6005F70F6 /* liquids.txt in Resources */ = {isa = PBXBuildFile; fileRef = A10519CA13A6F4D6005F70F6 /* liquids.txt */; };
 		A10519CD13A6F4F1005F70F6 /* groceries.db in Resources */ = {isa = PBXBuildFile; fileRef = A10519CC13A6F4F1005F70F6 /* groceries.db */; };
@@ -40,13 +39,15 @@
 		A1308567139492AD0073C959 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = A130854C139492AD0073C959 /* Settings.plist */; };
 		A1308568139492AD0073C959 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A130854D139492AD0073C959 /* SettingsView.xib */; };
 		A130856A139492AD0073C959 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A130854F139492AD0073C959 /* WebViewController.xib */; };
-		A162D95C18C2DF7300A102A1 /* libReveal.dylib in Resources */ = {isa = PBXBuildFile; fileRef = A1BC0CB918C2DC1600991882 /* libReveal.dylib */; };
 		A162D99F18C3F43800A102A1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A162D99E18C3F43800A102A1 /* SystemConfiguration.framework */; };
 		A167650413DC838400BEFC2F /* individuals.plist in Resources */ = {isa = PBXBuildFile; fileRef = A167650313DC838400BEFC2F /* individuals.plist */; };
-		A16F190D142FD323002BDFCB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A16F190B142FD323002BDFCB /* Default.png */; };
-		A16F190E142FD323002BDFCB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A16F190C142FD323002BDFCB /* Default@2x.png */; };
 		A18239401470AB2600AB5B7D /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = A182393F1470AB2600AB5B7D /* Entitlements.entitlements */; };
-		A1A4161718BEEDB200C2B94F /* GZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A4161618BEEDB200C2B94F /* GZIP.m */; };
+		A197750A190B42C600483870 /* GZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = A1977509190B42C600483870 /* GZIP.m */; };
+		A1977510190B432400483870 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A197750B190B432400483870 /* Default.png */; };
+		A1977511190B432400483870 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A197750C190B432400483870 /* Default@2x.png */; };
+		A1977512190B432400483870 /* large jar.png in Resources */ = {isa = PBXBuildFile; fileRef = A197750D190B432400483870 /* large jar.png */; };
+		A1977513190B432400483870 /* medium jar.png in Resources */ = {isa = PBXBuildFile; fileRef = A197750E190B432400483870 /* medium jar.png */; };
+		A1977514190B432400483870 /* small jar.png in Resources */ = {isa = PBXBuildFile; fileRef = A197750F190B432400483870 /* small jar.png */; };
 		A1A9ECDA13A6F69700F1F610 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A9ECD513A6F69700F1F610 /* FMDatabase.m */; };
 		A1A9ECDB13A6F69700F1F610 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A9ECD613A6F69700F1F610 /* FMDatabaseAdditions.m */; };
 		A1A9ECDC13A6F69700F1F610 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A9ECD713A6F69700F1F610 /* FMResultSet.m */; };
@@ -61,12 +62,10 @@
 		A1BB8E58139491770031CC4D /* PantryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB8E49139491770031CC4D /* PantryViewController.m */; };
 		A1BB8E5B139491770031CC4D /* SettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB8E4C139491770031CC4D /* SettingsManager.m */; };
 		A1BB8E5C139491770031CC4D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BB8E4D139491770031CC4D /* SettingsViewController.m */; };
-		A1BC0CB618C2DAAA00991882 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1BC0CB518C2DAAA00991882 /* CFNetwork.framework */; };
-		A1BC0CB818C2DAC500991882 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1BC0CB718C2DAC500991882 /* QuartzCore.framework */; };
+		A1DC2AD2190B5FBE0086F385 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1DC2AD1190B5FBE0086F385 /* CFNetwork.framework */; };
+		A1DC2AD5190B639D0086F385 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
+		A1DC2AD7190B65770086F385 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DC2AD6190B65770086F385 /* Default-568h@2x.png */; };
 		A1DF270213DFBC0400AE774D /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DF270013DFBC0400AE774D /* OptionsViewController.m */; };
-		A1E49D7214C2249C008C1780 /* large jar.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E49D7114C2249C008C1780 /* large jar.png */; };
-		A1E49D7414C224B0008C1780 /* small jar.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E49D7314C224B0008C1780 /* small jar.png */; };
-		A1E49D7614C224BD008C1780 /* medium jar.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E49D7514C224BD008C1780 /* medium jar.png */; };
 		A1E56FE91415CEB20039AFA7 /* full_plate_home_screen_57.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E56FE61415CEB20039AFA7 /* full_plate_home_screen_57.png */; };
 		A1E56FEA1415CEB20039AFA7 /* full_plate_home_screen_72.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E56FE71415CEB20039AFA7 /* full_plate_home_screen_72.png */; };
 		A1E56FEB1415CEB20039AFA7 /* full_plate_home_screen_114.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E56FE81415CEB20039AFA7 /* full_plate_home_screen_114.png */; };
@@ -115,12 +114,15 @@
 		A13AF6CF1909F6610035FF1D /* DisplayControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DisplayControl.h; path = Headers/DisplayControl.h; sourceTree = "<group>"; };
 		A162D99E18C3F43800A102A1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A167650313DC838400BEFC2F /* individuals.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = individuals.plist; path = Resources/individuals.plist; sourceTree = "<group>"; };
-		A16F190B142FD323002BDFCB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		A16F190C142FD323002BDFCB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A182393F1470AB2600AB5B7D /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
+		A1977508190B42BA00483870 /* GZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GZIP.h; path = Headers/GZIP.h; sourceTree = "<group>"; };
+		A1977509190B42C600483870 /* GZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GZIP.m; path = Sources/GZIP.m; sourceTree = "<group>"; };
+		A197750B190B432400483870 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		A197750C190B432400483870 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
+		A197750D190B432400483870 /* large jar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "large jar.png"; path = "Resources/large jar.png"; sourceTree = "<group>"; };
+		A197750E190B432400483870 /* medium jar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "medium jar.png"; path = "Resources/medium jar.png"; sourceTree = "<group>"; };
+		A197750F190B432400483870 /* small jar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "small jar.png"; path = "Resources/small jar.png"; sourceTree = "<group>"; };
 		A19FB9B514DF7E1C00B33225 /* MenuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuManager.h; path = Headers/MenuManager.h; sourceTree = "<group>"; };
-		A1A4161518BEEDB200C2B94F /* GZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GZIP.h; path = ../GZIP.h; sourceTree = "<group>"; };
-		A1A4161618BEEDB200C2B94F /* GZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GZIP.m; path = ../GZIP.m; sourceTree = "<group>"; };
 		A1A9ECD013A6F68000F1F610 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = Headers/FMDatabase.h; sourceTree = "<group>"; };
 		A1A9ECD113A6F68000F1F610 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = Headers/FMDatabaseAdditions.h; sourceTree = "<group>"; };
 		A1A9ECD213A6F68000F1F610 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = Headers/FMResultSet.h; sourceTree = "<group>"; };
@@ -148,14 +150,10 @@
 		A1BB8E49139491770031CC4D /* PantryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PantryViewController.m; path = Sources/PantryViewController.m; sourceTree = "<group>"; };
 		A1BB8E4C139491770031CC4D /* SettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsManager.m; path = Sources/SettingsManager.m; sourceTree = "<group>"; };
 		A1BB8E4D139491770031CC4D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Sources/SettingsViewController.m; sourceTree = "<group>"; };
-		A1BC0CB518C2DAAA00991882 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CFNetwork.framework; sourceTree = "<group>"; };
-		A1BC0CB718C2DAC500991882 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QuartzCore.framework; sourceTree = "<group>"; };
-		A1BC0CB918C2DC1600991882 /* libReveal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libReveal.dylib; sourceTree = "<group>"; };
+		A1DC2AD1190B5FBE0086F385 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A1DC2AD6190B65770086F385 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A1DF26FE13DFBBCA00AE774D /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionsViewController.h; path = Headers/OptionsViewController.h; sourceTree = "<group>"; };
 		A1DF270013DFBC0400AE774D /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OptionsViewController.m; path = Sources/OptionsViewController.m; sourceTree = "<group>"; };
-		A1E49D7114C2249C008C1780 /* large jar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "large jar.png"; sourceTree = "<group>"; };
-		A1E49D7314C224B0008C1780 /* small jar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small jar.png"; sourceTree = "<group>"; };
-		A1E49D7514C224BD008C1780 /* medium jar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "medium jar.png"; sourceTree = "<group>"; };
 		A1E56FE61415CEB20039AFA7 /* full_plate_home_screen_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = full_plate_home_screen_57.png; path = Resources/full_plate_home_screen_57.png; sourceTree = "<group>"; };
 		A1E56FE71415CEB20039AFA7 /* full_plate_home_screen_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = full_plate_home_screen_72.png; path = Resources/full_plate_home_screen_72.png; sourceTree = "<group>"; };
 		A1E56FE81415CEB20039AFA7 /* full_plate_home_screen_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = full_plate_home_screen_114.png; path = Resources/full_plate_home_screen_114.png; sourceTree = "<group>"; };
@@ -168,12 +166,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1DC2AD5190B639D0086F385 /* CoreGraphics.framework in Frameworks */,
+				A1DC2AD2190B5FBE0086F385 /* CFNetwork.framework in Frameworks */,
 				A162D99F18C3F43800A102A1 /* SystemConfiguration.framework in Frameworks */,
-				A1BC0CB618C2DAAA00991882 /* CFNetwork.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				A1BC0CB818C2DAC500991882 /* QuartzCore.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */,
 				A1F6E72E141D290F000F843B /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +198,7 @@
 		29B97314FDCFA39411CA2CEA /* FullPlate */ = {
 			isa = PBXGroup;
 			children = (
+				A1DC2AD6190B65770086F385 /* Default-568h@2x.png */,
 				A182393F1470AB2600AB5B7D /* Entitlements.entitlements */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -222,12 +220,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A197750B190B432400483870 /* Default.png */,
+				A197750C190B432400483870 /* Default@2x.png */,
+				A197750D190B432400483870 /* large jar.png */,
+				A197750E190B432400483870 /* medium jar.png */,
+				A197750F190B432400483870 /* small jar.png */,
 				A11427CF143540D50040F715 /* iTunesArtwork */,
-				A1E49D7114C2249C008C1780 /* large jar.png */,
-				A1E49D7514C224BD008C1780 /* medium jar.png */,
-				A16F190B142FD323002BDFCB /* Default.png */,
-				A16F190C142FD323002BDFCB /* Default@2x.png */,
-				A1E49D7314C224B0008C1780 /* small jar.png */,
 				A1E56FE61415CEB20039AFA7 /* full_plate_home_screen_57.png */,
 				A1E56FE71415CEB20039AFA7 /* full_plate_home_screen_72.png */,
 				A1E56FE81415CEB20039AFA7 /* full_plate_home_screen_114.png */,
@@ -268,10 +266,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1DC2AD1190B5FBE0086F385 /* CFNetwork.framework */,
 				A162D99E18C3F43800A102A1 /* SystemConfiguration.framework */,
-				A1BC0CB918C2DC1600991882 /* libReveal.dylib */,
-				A1BC0CB718C2DAC500991882 /* QuartzCore.framework */,
-				A1BC0CB518C2DAAA00991882 /* CFNetwork.framework */,
 				A1F6E72D141D290F000F843B /* libsqlite3.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -283,6 +279,7 @@
 		A187DE05123C6C92002D6907 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A1977509190B42C600483870 /* GZIP.m */,
 				A117624E14DF7DD100F5642D /* MenuManager.m */,
 				A117624914DF7CA300F5642D /* AllRecipesProxy.m */,
 				A1A9ECD513A6F69700F1F610 /* FMDatabase.m */,
@@ -291,7 +288,6 @@
 				A1BB8E42139491770031CC4D /* FullPlateAppDelegate.m */,
 				A1A9ECD813A6F69700F1F610 /* GroceriesManager.m */,
 				A1BB8E43139491770031CC4D /* GroceriesViewController.m */,
-				A1A4161618BEEDB200C2B94F /* GZIP.m */,
 				A1BB8E44139491770031CC4D /* Ingredient.m */,
 				A1BB8E45139491770031CC4D /* main.m */,
 				A1BB8E46139491770031CC4D /* Recipe.m */,
@@ -308,6 +304,7 @@
 		A187DE0C123C6C9C002D6907 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				A1977508190B42BA00483870 /* GZIP.h */,
 				A13AF6CF1909F6610035FF1D /* DisplayControl.h */,
 				A19FB9B514DF7E1C00B33225 /* MenuManager.h */,
 				A117624714DF7C8B00F5642D /* AllRecipesProxy.h */,
@@ -317,7 +314,6 @@
 				A1BB8E34139491520031CC4D /* FullPlateAppDelegate.h */,
 				A1A9ECD313A6F68000F1F610 /* GroceriesManager.h */,
 				A1BB8E35139491520031CC4D /* GroceriesViewController.h */,
-				A1A4161518BEEDB200C2B94F /* GZIP.h */,
 				A1BB8E36139491520031CC4D /* Ingredient.h */,
 				A1BB8E37139491520031CC4D /* Recipe.h */,
 				A1BB8E38139491520031CC4D /* MenuViewController.h */,
@@ -384,7 +380,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A162D95C18C2DF7300A102A1 /* libReveal.dylib in Resources */,
 				A1308550139492AD0073C959 /* 20-gear2.png in Resources */,
 				A1308551139492AD0073C959 /* 20-gear2@2x.png in Resources */,
 				A1308552139492AD0073C959 /* 33-cabinet.png in Resources */,
@@ -396,6 +391,9 @@
 				A130855A139492AD0073C959 /* Dishes.txt in Resources */,
 				A130855D139492AD0073C959 /* GroceriesView.xib in Resources */,
 				A130855E139492AD0073C959 /* Ingredients.txt in Resources */,
+				A1977511190B432400483870 /* Default@2x.png in Resources */,
+				A1977510190B432400483870 /* Default.png in Resources */,
+				A1DC2AD7190B65770086F385 /* Default-568h@2x.png in Resources */,
 				A130855F139492AD0073C959 /* MainWindow.xib in Resources */,
 				A1308560139492AD0073C959 /* MenuView.xib in Resources */,
 				A1308561139492AD0073C959 /* OptionsView.xib in Resources */,
@@ -405,9 +403,12 @@
 				A1308566139492AD0073C959 /* SecondView.xib in Resources */,
 				A1308567139492AD0073C959 /* Settings.plist in Resources */,
 				A1308568139492AD0073C959 /* SettingsView.xib in Resources */,
+				A1977513190B432400483870 /* medium jar.png in Resources */,
 				A130856A139492AD0073C959 /* WebViewController.xib in Resources */,
 				A10519C913A6F4C2005F70F6 /* perishables.txt in Resources */,
 				A10519CB13A6F4D6005F70F6 /* liquids.txt in Resources */,
+				A1977514190B432400483870 /* small jar.png in Resources */,
+				A1977512190B432400483870 /* large jar.png in Resources */,
 				A10519CD13A6F4F1005F70F6 /* groceries.db in Resources */,
 				A10519CF13A6F4FF005F70F6 /* menu.db in Resources */,
 				A10519D113A6F50C005F70F6 /* pantry.db in Resources */,
@@ -417,13 +418,8 @@
 				A1E56FE91415CEB20039AFA7 /* full_plate_home_screen_57.png in Resources */,
 				A1E56FEA1415CEB20039AFA7 /* full_plate_home_screen_72.png in Resources */,
 				A1E56FEB1415CEB20039AFA7 /* full_plate_home_screen_114.png in Resources */,
-				A16F190D142FD323002BDFCB /* Default.png in Resources */,
-				A16F190E142FD323002BDFCB /* Default@2x.png in Resources */,
 				A11427D0143540D50040F715 /* iTunesArtwork in Resources */,
 				A18239401470AB2600AB5B7D /* Entitlements.entitlements in Resources */,
-				A1E49D7214C2249C008C1780 /* large jar.png in Resources */,
-				A1E49D7414C224B0008C1780 /* small jar.png in Resources */,
-				A1E49D7614C224BD008C1780 /* medium jar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +431,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1BB8E51139491770031CC4D /* FullPlateAppDelegate.m in Sources */,
+				A197750A190B42C600483870 /* GZIP.m in Sources */,
 				A1BB8E52139491770031CC4D /* GroceriesViewController.m in Sources */,
 				A1BB8E53139491770031CC4D /* Ingredient.m in Sources */,
 				A1BB8E54139491770031CC4D /* main.m in Sources */,
@@ -448,7 +445,6 @@
 				A1A9ECDC13A6F69700F1F610 /* FMResultSet.m in Sources */,
 				A1A9ECDD13A6F69700F1F610 /* GroceriesManager.m in Sources */,
 				A1A9ECDE13A6F69700F1F610 /* PantryManager.m in Sources */,
-				A1A4161718BEEDB200C2B94F /* GZIP.m in Sources */,
 				A1DF270213DFBC0400AE774D /* OptionsViewController.m in Sources */,
 				A117624B14DF7CA300F5642D /* AllRecipesProxy.m in Sources */,
 				A117624F14DF7DD100F5642D /* MenuManager.m in Sources */,
@@ -469,7 +465,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"\\\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/System/Library/Frameworks\\\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/System/Library/Frameworks\"",
 					/Users/jazzdman/sandbox/InsatiableLifeIOS,
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -480,7 +476,7 @@
 				INFOPLIST_FILE = "InsatiableLifeIOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/usr/lib\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib\"",
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
 					"\"$(SRCROOT)/Resources\"",
@@ -565,6 +561,14 @@
 				INFOPLIST_FILE = "InsatiableLifeIOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes\"",
+					"\"$(SRCROOT)/Resources\"",
+					"\"$(SRCROOT)\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/usr/lib\"",
+					"\"$(SRCROOT)/Downloads/android-sdk-mac_x86/tools/Jet/JetCreator\"",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
 					"\"$(SRCROOT)/Resources\"",

@@ -13,7 +13,7 @@
 #import "SettingsViewController.h"
 #import "DisplayControl.h"
 
-#import <dlfcn.h>
+//#import <dlfcn.h>
 
 
 @implementation FullPlateAppDelegate
@@ -419,7 +419,7 @@
     return 320.0f;
 }
 
-
+/*
 #pragma mark - Reveal
 
 
@@ -441,7 +441,7 @@
         [[[UIAlertView alloc] initWithTitle:@"Reveal library could not be loaded" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
 }
-
+*/
 
 /**********************************************
  *

@@ -515,7 +515,7 @@ parseErrorOccurred:(NSError *)parseError
  *************************************************************/
 -(void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    NSMutableString * tmpID = [[NSMutableString alloc] initWithCapacity:1];
+    NSMutableString * tmpID;
     
     NSLog(@"This is the node value: %@", string);
 
@@ -533,12 +533,14 @@ parseErrorOccurred:(NSError *)parseError
             self.minCaloriesPerServing = string;
             break;
         case CLIENT_ID:
+            tmpID = [[NSMutableString alloc] initWithCapacity:1];
             [tmpID appendString:string];
             for (int i=(int)[tmpID length] +1; i < CLIENT_ID_LENGTH; i++) {
                 [tmpID insertString:@"0" atIndex:0];
             }
             
             self.clientID = tmpID;
+            [tmpID release];
             break;
         default:
             // We're only interested in the elements listed above.  This is some sort of error.
